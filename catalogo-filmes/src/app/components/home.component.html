@@ -1,0 +1,27 @@
+<!-- <div class="app-home-page">
+  <span>{{ title }}</span>
+  <div *ngIf="data">
+    <div *ngFor="let item of data">
+      <p> {{ item.original_title }} </p>
+      <img src="{{ url_img + item.poster_path }}" width="70" />
+      <p> {{ item.overview }} </p>
+    </div>
+  </div>
+</div> -->
+
+<table>
+  <thead>
+    <tr>
+      <td>Título</td>
+      <td>Poster</td>
+      <td>Overview</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of data">
+      <td>{{ movie.original_title }}</td>
+      <td> <img src="{{ url_img + movie.poster_path }}" width="70" /></td>
+      <td>{{ movie.overview }}</td>
+    </tr>
+  </tbody>
+</table>
