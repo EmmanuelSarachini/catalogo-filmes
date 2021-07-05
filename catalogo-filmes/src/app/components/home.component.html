@@ -1,27 +1,30 @@
-<!-- <div class="app-home-page">
-  <span>{{ title }}</span>
-  <div *ngIf="data">
-    <div *ngFor="let item of data">
-      <p> {{ item.original_title }} </p>
-      <img src="{{ url_img + item.poster_path }}" width="70" />
-      <p> {{ item.overview }} </p>
-    </div>
-  </div>
-</div> -->
+<div class="app-home-page">
 
-<table>
-  <thead>
-    <tr>
-      <td>Título</td>
-      <td>Poster</td>
-      <td>Overview</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let movie of data">
-      <td>{{ movie.original_title }}</td>
-      <td> <img src="{{ url_img + movie.poster_path }}" width="70" /></td>
-      <td>{{ movie.overview }}</td>
-    </tr>
-  </tbody>
-</table>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Busque por filmes, séries, atores..." (keyup.enter)="search($event)"
+          aria-label="Search">
+        <small>Clique em "enter" para buscar.</small>
+      </form>
+    </div>
+  </section>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 d-flex align-items-stretch" *ngFor="let movie of data">
+          <div class="card box-shadow" style="border-radius: 25px;">
+            <img class="card-img-top" style="border-radius: 25px;" data-src="{{ url_img + movie.poster_path }}" alt="Card image cap">
+            <div class="card-body">
+              <div class="_label">{{ movie.overview }}</div>
+              <div style="padding: 5px;" class="d-flex justify-content-between align-items-center text-muted">
+                <small>Release date: {{ movie.release_date | date:'dd/MM/yyyy' }}</small>
+                <small>Average score: {{ movie.vote_average }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
