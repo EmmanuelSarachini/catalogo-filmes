@@ -2,6 +2,8 @@ import { Observable } from 'rxjs';
 import { CatalogoFilmesService } from './../services/catalogo-filmes.service';
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -23,18 +25,22 @@ export class HomeComponent implements OnInit {
 
 
   public async ngOnInit() {
+    this.loadInicial();
 
-   await this.CatalogoFilmesService.search_('Alien').subscribe(filmes => {
+  }
+
+  async loadInicial() {
+    await this.CatalogoFilmesService.getTreding().subscribe(filmes => {
       this.data = filmes.results;
       console.log('teste -> ', this.data);
-      if (this.data !== null) {
-        this.data.forEach((item: { poster_path: String; }) => {
-          this.arrPosters.push(item.poster_path);
-        });
-        console.log(this.arrPosters);
-      }
     });
 
   }
 
+  async search($event: any) {
+    console.log($event);
+  }
+
 }
+
+
