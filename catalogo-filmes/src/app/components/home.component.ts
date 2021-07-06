@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 import { CatalogoFilmesService } from './../services/catalogo-filmes.service';
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 
 
@@ -15,30 +14,34 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    public CatalogoFilmesService: CatalogoFilmesService, private router: Router) {
+    public catalogoFilmesService: CatalogoFilmesService, private router: Router) {
   }
 
-  title = 'Home';
+  stringSearch = '';
+
   public url_img = 'https://image.tmdb.org/t/p/w500';
   public data: any | any[];
   public arrPosters: any[] = [];
 
 
-  public async ngOnInit() {
+ ngOnInit() {
     this.loadInicial();
-
   }
 
   async loadInicial() {
-    await this.CatalogoFilmesService.getTreding().subscribe(filmes => {
+    await this.catalogoFilmesService.getTreding().subscribe(filmes => {
       this.data = filmes.results;
       console.log('teste -> ', this.data);
     });
 
   }
 
-  async search($event: any) {
-    console.log($event);
+   search() {
+    this.data = [];
+     this.catalogoFilmesService.search_(this.stringSearch).subscribe(filmes => {
+      this.data = filmes.results;
+      console.log('busca -> ', this.data);
+    });
   }
 
 }

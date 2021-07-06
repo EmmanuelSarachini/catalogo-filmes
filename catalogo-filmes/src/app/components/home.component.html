@@ -1,22 +1,29 @@
+
 <div class="app-home-page">
 
-  <section class="jumbotron text-center">
+  <section style="padding: 5px; text-align: center;">
     <div class="container">
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Busque por filmes, séries, atores..." (keyup.enter)="search($event)"
-          aria-label="Search">
-        <small>Clique em "enter" para buscar.</small>
+        <input style="border-radius: 25px;" class="form-control" placeholder="Busque por filmes, séries, atores..." [(ngModel)]="stringSearch" name="searchStr" (keyup.enter)="search()">
+        <small style="color: #369;">Aperte "enter" para buscar.</small>
       </form>
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <p>
+            <a href="/" class="btn btn-primary my-2">Recarregar Trendings</a>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
-    <div class="container">
-      <div class="row">
+    <div class="container" *ngIf="data">
+      <div class="row" style="padding: 5px;">
         <div class="col-md-4 d-flex align-items-stretch" *ngFor="let movie of data">
-          <div class="card box-shadow" style="border-radius: 25px;">
+          <div class="card box-shadow" style="border-radius: 25px; margin: 5px;">
             <img class="card-img-top" style="border-radius: 25px;" data-src="{{ url_img + movie.poster_path }}" alt="Card image cap">
             <div class="card-body">
-              <div class="_label">{{ movie.overview }}</div>
+              <p class="_label">{{ movie.overview }}</p>
               <div style="padding: 5px;" class="d-flex justify-content-between align-items-center text-muted">
                 <small>Release date: {{ movie.release_date | date:'dd/MM/yyyy' }}</small>
                 <small>Average score: {{ movie.vote_average }}</small>
