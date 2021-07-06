@@ -21,7 +21,8 @@ export class HomeComponent implements OnInit {
 
   public url_img = 'https://image.tmdb.org/t/p/w500';
   public data: any | any[];
-  public arrPosters: any[] = [];
+
+  public title = 'POC DAITAN - Catalogo de filmes'
 
 
  ngOnInit() {
@@ -36,13 +37,15 @@ export class HomeComponent implements OnInit {
 
   }
 
-   search() {
+   search(event: any) {
     this.data = [];
      this.catalogoFilmesService.search_(this.stringSearch).subscribe(filmes => {
       this.data = filmes.results;
       console.log('busca -> ', this.data);
     });
   }
+
+
 
 }
 
