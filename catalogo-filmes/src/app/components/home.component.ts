@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   async loadInicial() {
     await this.catalogoFilmesService.getTreding().subscribe(filmes => {
       this.data = filmes.results;
+      console.log(this.data);
       this.returnVideoId(this.data);
     });
 
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit {
 
   returnVideoId(movie: any[]) {
     movie.forEach(film => {
-      this.catalogoFilmesService.getTrailer(film.id).subscribe(trailerData => {
+      this.catalogoFilmesService.getTrailer(film.id, film.media_type).subscribe(trailerData => {
         film.idTrailer = trailerData.results[0] ? trailerData.results[0].key : '';
       });
     });
