@@ -3,6 +3,9 @@
     "openedPathsList": {
         "entries": [
             {
+                "folderUri": "file:///usr/github/poc_daitan/catalogo-filmes/catalogo-filmes"
+            },
+            {
                 "folderUri": "file:///usr/github/moviefinder"
             },
             {
@@ -10,9 +13,6 @@
             },
             {
                 "folderUri": "file:///usr/github/angular-movie-list-master"
-            },
-            {
-                "folderUri": "file:///usr/github/poc_daitan/catalogo-filmes/catalogo-filmes"
             }
         ]
     },
@@ -50,7 +50,8 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor"
+                                    "label": "&&Reopen Closed Editor",
+                                    "enabled": false
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -625,7 +626,8 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location"
+                        "label": "&&Last Edit Location",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1523,7 +1525,7 @@
             "editorPartMinWidth": 220,
             "titleBarHeight": 0,
             "activityBarWidth": 48,
-            "sideBarWidth": 256,
+            "sideBarWidth": 283,
             "statusBarHeight": 22,
             "windowBorder": false
         }

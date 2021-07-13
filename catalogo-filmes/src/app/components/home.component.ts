@@ -3,6 +3,7 @@ import { CatalogoFilmesService } from './../services/catalogo-filmes.service';
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit {
   async loadInicial() {
     await this.catalogoFilmesService.getTreding().subscribe(filmes => {
       this.data = filmes.results;
-      console.log('teste -> ', this.data);
+      this.returnVideoId(this.data);
     });
 
   }
@@ -41,11 +42,18 @@ export class HomeComponent implements OnInit {
     this.data = [];
      this.catalogoFilmesService.search_(this.stringSearch).subscribe(filmes => {
       this.data = filmes.results;
+      this.returnVideoId(this.data);
       console.log('busca -> ', this.data);
     });
   }
 
-
+  returnVideoId(movie: any[]) {
+    movie.forEach(film => {
+      this.catalogoFilmesService.getTrailer(film.id).subscribe(trailerData => {
+        film.idTrailer = trailerData.results[0] ? trailerData.results[0].key : '';
+      });
+    });
+  }
 
 }
 
